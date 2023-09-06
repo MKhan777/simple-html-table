@@ -1,0 +1,108 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>School Data</title>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="text-center">School Data</h1>
+        <div class="table-responsive-sm">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="text-center">Name</th>
+                        <script>
+                            var subjects = [
+                                "Math",
+                                "History",
+                                "Chemistry",
+                                "Physics",
+                                "English",
+                                "Computer Science",
+                                "Art",
+                                "Music",
+                                "Persian",
+                                "Algebra",
+                            ];
+
+                            subjects.forEach(function(subject) {
+                                document.write(`<th class="text-center">${subject}</th>`);
+                            });
+
+                            document.write('<th class="text-center">Total</th>');
+                        </script>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        var jsonData = {
+            "page_title": "School Data",
+            "students": [
+                {
+                    "id": 1,
+                    "name": "Ali",
+                    "subjects": {
+                        "Math": 95,
+                        "History": 80,
+                        "Chemistry": 10,
+                        "Physics": 120,
+                        "English": 203,
+                        "Computer Science": 222,
+                        "Art": 100,
+                        "Music": 200,
+                        "Persian": 100,
+                        "Algebra": 200,
+                    },
+                    "total": 220
+                },
+                {
+                    "id": 2,
+                    "name": "Sarah",
+                    "subjects": {
+                        "Math": 95,
+                        "History": 80,
+                        "Chemistry": 10,
+                        "Physics": 120,
+                        "English": 203,
+                        "Computer Science": 222,
+                        "Art": 100,
+                        "Music": 200,
+                        "Persian": 100,
+                        "Algebra": 200,
+                    },
+                    "total": 175
+                },
+            ]
+        };
+
+        function populateTable() {
+            var tableBody = document.getElementById("table-body");
+
+            jsonData.students.forEach(function(student) {
+                var row = document.createElement("tr");
+                row.innerHTML = `<td>${student.name}</td>`;
+
+                subjects.forEach(function(subject) {
+                    row.innerHTML += `<td class="text-center">${student.subjects[subject]}</td>`;
+                });
+
+                row.innerHTML += `<td class="text-center">${student.total}</td>`;
+                tableBody.appendChild(row);
+            });
+        }
+
+        window.onload = populateTable;
+    </script>
+</body>
+</html>
